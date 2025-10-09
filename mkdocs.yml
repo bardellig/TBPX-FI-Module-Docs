@@ -1,5 +1,9 @@
-site_name: TBPX Module assembly and test documentation
+site_name: TBPX Module Assembly and Testing - Firenze
+theme:
+  name: readthedocs  # or 'cayman' if using mkdocs-cayman
 nav:
   - Home: index.md
-  - About: about.md
-theme: readthedocs
+  - IV Bare Module Testing:
+      - Procedure: iv_bare_module_testing/IT_3D_IV_BM_procedure.md
+  - Module Testing:
+      - Overview: module_testing/codi.md
