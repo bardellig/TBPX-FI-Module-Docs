@@ -7,5 +7,5 @@ Below you’ll find links to detailed documentation sections.
 
 ## Available Documents
 
-- [IV Bare Module Test](docs/iv_bare_module_testing/IT_3D_IV_BM_procedure.md)
-- [Module Testing](docs/module_testing/codi.md)
+- [IV Bare Module Test](iv_bare_module_testing/IT_3D_IV_BM_procedure.md)
+- [Module Testing](module_testing/codi.md)
