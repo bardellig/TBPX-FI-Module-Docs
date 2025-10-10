@@ -61,4 +61,4 @@ Measurement:
 *  Reconnect the tool’s tube to the gel-pak metal support.
 *  Return the flip-chip to its original location, this time flipped over, and proceed with the next one.
 
-[← Back to main page](../../index.md)
+[← Back to main page](../index.md)
