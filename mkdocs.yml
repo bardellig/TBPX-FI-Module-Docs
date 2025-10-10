@@ -1,6 +1,6 @@
 site_name: TBPX Module Assembly and Testing - Firenze
 theme:
-  name: readthedocs  # or 'cayman' if using mkdocs-cayman
+  name: mkdocs  # or 'cayman' if using mkdocs-cayman
 nav:
   - Home: index.md
   - IV Bare Module Testing:
