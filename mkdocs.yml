@@ -2,7 +2,7 @@ site_name: TBPX Module Assembly and Testing - Firenze
 site_url: https://bardellig.github.io/TBPX-FI-Module-Docs/
 use_directory_urls: false
 theme:
-  name: readthedocs  # or 'cayman' if using mkdocs-cayman
+  name: material  # or 'cayman' if using mkdocs-cayman
 nav:
   - Home: index.md
   - IV Bare Module Testing:
