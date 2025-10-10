@@ -9,5 +9,7 @@ nav:
   - Home: index.md
   - IV Bare Module Testing:
       - Procedure: iv_bare_module_testing/IT_3D_IV_BM_procedure.md
+  - Module Testing Preliminary:
+      - Overview: module_testing_preliminary/preliminary_op.md
   - Module Testing:
       - Overview: module_testing/codi.md
