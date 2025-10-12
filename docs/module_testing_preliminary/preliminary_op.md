@@ -21,13 +21,17 @@ Hardware:
 * Clamp 3D printed
 
 First visual inspect the module, the wire-bondings, the status of connectors of the assembled modules. Place the module in the base plate, close the power connector in the Testing adapter, close with the clamp and screw it to the base plate using flat screw otherwise the needle card will not be able to reach the module. Place the four spines, taking care of placing the small one as it's illustrated in the picture. Attach the usb cable, and enable its usb port, if it's not done, with: 
-''' sudo chmod 777 /dev/ttyUSB* '''
+``` 
+sudo chmod 777 /dev/ttyUSB* 
+```
 
 After downloading and having installed dirigent and Ph2_ACF source first on dirigent and later on Ph2_ACF. It can be that the root version downloaded in the pc is from a binary distribution, dirigent in that case has to be compiled with the -c flag. Check that the icicle version works, by trying to talk with an instrument, as example:
-''' tti -R "resource_name" status" 
+```
+tti -R "resource_name" status"
+``` 
 
 Copy the config files on available in the config file of dirigent. The modules.json file has to be adapted for the module studied (double or quad). Example for double:
-'''
+```
 {
         "Hybrid": {
                 "0": {
@@ -39,10 +43,10 @@ Copy the config files on available in the config file of dirigent. The modules.j
                 }
         }
 }
-'''
+```
 
 The instruments.json file has to be adapted for the instruments used, the lv, the keithley, the cold box and the needle card, according to the examples below:
-'''
+```
 instruments": {
                 "lv_1": {
                         "class": "TTITSX",
@@ -65,14 +69,18 @@ instruments": {
                         "resource": "ASRL/dev/ttyUSB2::INSTR"
                 }
         },
-'''
+```
 
 The dirigent.toml file has to be adapted according to the tests that are going to be performed. The first test used is get_module_info to retrieve the information of the modules. It's launched via the command below, where the flag -r is meant to overwrite  the parameters of the json and -e to overwrite the e-fuse code of the modules.json. This will try to read the module and by the efuse codes it will download the information from the database.   
-''' dirigent -C dirigent.toml get_module_info -r 1 -e 1'''
+```
+dirigent -C dirigent.toml get_module_info -r 1 -e 1
+```
 
 
 The most common scans are the iv_curve scan, with limit imposed to -80 V for 3D and to -350 V for planar. In the scan the flag monitor_temperature has to be set true such that the temperature is registered at the end of the scan. At the moment it's possible to increase the time of the measurements, through the flag temp_runtime to 20, and launching the scan with 
-'''dirigent -C dirigent.toml iv_curve -t 20'''
+```
+dirigent -C dirigent.toml iv_curve -t 20
+```
 This is done to guarantee enough time to Ph2_ACF such that it's able to save correctly the monitoring files 
 
 [← Back to main page](../index.md)
