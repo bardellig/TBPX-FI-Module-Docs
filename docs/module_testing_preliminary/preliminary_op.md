@@ -20,7 +20,23 @@ Hardware:
 * 3 long spines and 1 short and a USB-A cable
 * Clamp 3D printed
 
-First visual inspect the module, the wire-bondings, the status of connectors of the assembled modules. Place the module in the base plate, close the power connector in the Testing adapter, close with the clamp and screw it to the base plate using flat screw otherwise the needle card will not be able to reach the module. Place the four spines, taking care of placing the small one as it's illustrated in the picture. Attach the usb cable, and enable its usb port, if it's not done, with: 
+First visual inspect the module, the wire-bondings, the status of connectors of the assembled modules. Make a picture, focusing especially on the qr code that can be useful to register the HDI in the database if this has not yet been done. Place the module in the base plate, close the power connector in the Testing adapter, terminate the circuit with the paddle-board dedicated to close the circuit, close with the clamp and screw it to the base plate using flat screw otherwise the needle card will not be able to reach the module. Connect the flat cable reader between the testing adapter and the read-out connector of the modules. Place the four spines, taking care of placing the small one as it's illustrated in the picture.
+
+
+![module](module_exp.png)
+
+![needle_card](needlecard_testing.png)
+
+
+
+
+
+
+
+
+
+
+ Attach the usb cable, and enable its usb port, if it's not done, with: 
 ``` 
 sudo chmod 777 /dev/ttyUSB* 
 ```
@@ -75,6 +91,39 @@ The dirigent.toml file has to be adapted according to the tests that are going t
 ```
 dirigent -C dirigent.toml get_module_info -r 1 -e 1
 ```
+The outcome should be similar to:
+
+```
+2025-10-07 12:57:24 INFO get_module_info - ===== 3/3 Replace trim bit settings in modules.json =====
+2025-10-07 12:57:24 INFO get_module_info - Settings pulled from database that match 'modules.json':
+2025-10-07 12:57:24 INFO get_module_info - VOLTAGE_TRIM_DIG = [10, 8]
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VOLTAGE_TRIM_DIG": 10' with '"VOLTAGE_TRIM_DIG": 10'
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VOLTAGE_TRIM_DIG": 8' with '"VOLTAGE_TRIM_DIG": 8'
+2025-10-07 12:57:24 INFO get_module_info - Overwriting JSON file...
+2025-10-07 12:57:24 INFO get_module_info - Done.
+2025-10-07 12:57:24 INFO get_module_info - VOLTAGE_TRIM_ANA = [10, 9]
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VOLTAGE_TRIM_ANA": 10' with '"VOLTAGE_TRIM_ANA": 10'
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VOLTAGE_TRIM_ANA": 9' with '"VOLTAGE_TRIM_ANA": 9'
+2025-10-07 12:57:24 INFO get_module_info - Overwriting JSON file...
+2025-10-07 12:57:24 INFO get_module_info - Done.
+2025-10-07 12:57:24 INFO get_module_info - VREF_ADC = [860, 884]
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VREF_ADC": 823' with '"VREF_ADC": 860'
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"VREF_ADC": 838' with '"VREF_ADC": 884'
+2025-10-07 12:57:24 INFO get_module_info - Overwriting JSON file...
+2025-10-07 12:57:24 INFO get_module_info - Done.
+2025-10-07 12:57:24 INFO get_module_info - ADC_OFFSET_VOLT = [154, 126]
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"ADC_OFFSET_VOLT": 154' with '"ADC_OFFSET_VOLT": 154'
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"ADC_OFFSET_VOLT": 126' with '"ADC_OFFSET_VOLT": 126'
+2025-10-07 12:57:24 INFO get_module_info - Overwriting JSON file...
+2025-10-07 12:57:24 INFO get_module_info - Done.
+2025-10-07 12:57:24 INFO get_module_info - ADC_MAXIMUM_VOLT = [783, 792]
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"ADC_MAXIMUM_VOLT": 783' with '"ADC_MAXIMUM_VOLT": 783'
+2025-10-07 12:57:24 INFO get_module_info - Replacing JSON '"ADC_MAXIMUM_VOLT": 792' with '"ADC_MAXIMUM_VOLT": 792'
+2025-10-07 12:57:24 INFO get_module_info - Overwriting JSON file...
+2025-10-07 12:57:24 INFO get_module_info - Done.
+```
+
+To enable uploading the results in Panthera -
 
 
 The most common scans are the iv_curve scan, with limit imposed to -80 V for 3D and to -350 V for planar. In the scan the flag monitor_temperature has to be set true such that the temperature is registered at the end of the scan. At the moment it's possible to increase the time of the measurements, through the flag temp_runtime to 20, and launching the scan with 
