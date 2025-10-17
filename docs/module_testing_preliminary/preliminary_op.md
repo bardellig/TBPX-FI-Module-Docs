@@ -203,6 +203,7 @@ dirigent -C dirigent.toml iv_curve -t 20
 This is done to guarantee enough time to Ph2_ACF to save correctly the monitoring files. The expected output is also uploaded to Panthera if the flag is set to true. The output would look like this:
 ![Panthera_iv](c_iv_panther.png) 
 
+A further test is designed to study the ShuntLDO behaviour. This can be either done with the internal monitoring or the needle card properly designed. Two needle cards exist for the two module flavour (Double and Quad). While reading with the needle card, monitoring to Vofs will forbid a proper internal monitoring of the other parameters, and this limits performing the two scan at the same time. The first is done through `dirigent -C dirigent.toml sldo_vi_curves` and the second with `dirigent -C dirigent.toml sldo_vi_curves_GADC`. The available parameter allows to select the initial input current or the final current and from what current  the system start monitoring the values.
 
 
 [← Back to main page](../index.md)
