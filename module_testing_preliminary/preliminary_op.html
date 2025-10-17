@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
       
       
 
@@ -637,6 +637,7 @@
 </code></pre>
 <p>This is done to guarantee enough time to Ph2_ACF to save correctly the monitoring files. The expected output is also uploaded to Panthera if the flag is set to true. The output would look like this:
 <img alt="Panthera_iv" src="c_iv_panther.png" /> </p>
+<p>A further test is designed to study the ShuntLDO behaviour. This can be either done with the internal monitoring or the needle card properly designed. Two needle cards exist for the two module flavour (Double and Quad). While reading with the needle card, monitoring to Vofs will forbid a proper internal monitoring of the other parameters, and this limits performing the two scan at the same time. The first is done through <code>dirigent -C dirigent.toml sldo_vi_curves</code> and the second with <code>dirigent -C dirigent.toml sldo_vi_curves_GADC</code>. The available parameter allows to select the initial input current or the final current and from what current  the system start monitoring the values.</p>
 <p><a href="../index.html">← Back to main page</a></p>
 
 
