@@ -599,6 +599,10 @@
                 }
         },
 </code></pre>
+<p>The cold box should usually be operated at 15 °C. If the climatic chamber is used, the settings is manual, and it just need to flush dry air. Picture attached, </p>
+<p>The TBPX cold box, attached below, needs the chiller running at a temperature of around 10 °C and the flush of dry air. The chiller is manually configurable. The cold box is configured thanks to the routine implemented in dirigent or through the MQTT (Mosquitto) protocol.  More detail are listed in the manual of the PSI coldbox, here attached. Two terminal are used, one to monitor and one to control the cold box. In short, to use the box, one is obliged to flush dry air by controlling the valve. At the beginning you can control it with rinse and flush commands. When the flux is stable, you can use only the rinse command. The cold box is here shown: <br />
+<img alt="coldbox" src="coldbox.png" /></p>
+<p>The commands are the latter, for example for controlling a TEC and setting it to certain temperature. The TEC is first controlled with the voltage of the TEC, but the temperature can be set as well. Few lines are shown here. Troubleshoots can happen if the dry air is too hot or the chiller as well. The limits are set around 20 $^{\circ}$C, so it's important to be below that limit. The firmware can only be pushed to TEC and controlled if the chiller and the dry air are flushing, and also the physical interlock must be closed to proper operate the TECs. </p>
 <p>The dirigent.toml file has to be adapted according to the tests that are going to be performed. The first test used is get_module_info to retrieve the information of the modules. It's launched via the command below, where the flag -r is meant to overwrite  the parameters of the json and -e to overwrite the e-fuse code of the modules.json. This will try to read the module and by the efuse codes it will download the information from the database.   </p>
 <pre><code>dirigent -C dirigent.toml get_module_info -r 1 -e 1
 </code></pre>
@@ -637,7 +641,29 @@
 </code></pre>
 <p>This is done to guarantee enough time to Ph2_ACF to save correctly the monitoring files. The expected output is also uploaded to Panthera if the flag is set to true. The output would look like this:
 <img alt="Panthera_iv" src="c_iv_panther.png" /> </p>
-<p>A further test is designed to study the ShuntLDO behaviour. This can be either done with the internal monitoring or the needle card properly designed. Two needle cards exist for the two module flavour (Double and Quad). While reading with the needle card, monitoring to Vofs will forbid a proper internal monitoring of the other parameters, and this limits performing the two scan at the same time. The first is done through <code>dirigent -C dirigent.toml sldo_vi_curves</code> and the second with <code>dirigent -C dirigent.toml sldo_vi_curves_GADC</code>. The available parameter allows to select the initial input current or the final current and from what current  the system start monitoring the values.</p>
+<p>A further test is designed to study the ShuntLDO behaviour. This can be either done with the internal monitoring or the needle card properly designed. Two needle cards exist for the two module flavour (Double and Quad). While reading with the needle card, monitoring to Vofs will forbid a proper internal monitoring of the other parameters, and this limits performing the two scan at the same time. The first is done through <code>dirigent -C dirigent.toml sldo_vi_curves</code> and the second with <code>dirigent -C dirigent.toml sldo_vi_curves_GADC</code>. The available parameter allows to select the initial input current or the final current and from what current the system start monitoring the values.
+An example in the dirigent toml file is attached:</p>
+<pre><code>[sldo_vi_curves]
+    final_current = 8.0
+    initial_current = 3.0
+    current_step = 0.2
+    start_monitoring_current = 3.0
+    delay = 1.0
+    expected = true
+
+[sldo_vi_curves_GADC]
+    start_current = 3.0
+    stop_current = 8.0
+    delay = 1.0
+    step_size = 0.2
+    monitors = [&quot;VINA&quot;, &quot;VIND&quot;, &quot;VDDA&quot;, &quot;VDDD&quot;]
+</code></pre>
+<p>The expected output file will look like:</p>
+<p>The current monitoring makes sense from 3 A for double module. The scan limits are usually 3 to 5 A which are in the operational ball park for double modules. For a high shunt current operation the limit can reach 8 A. It's safer to proceed to high shunt operations with lower temperature on the cold box (climatic chamber). The output for the GADC scan is shown below:
+<img alt="monitorGADC" src="sldo_monitor.png" /></p>
+<p>The output of the needle card scan, is here:
+<img alt="monitorNeedle" src="sldo_needle.png" /></p>
+<p>To use the needle in the cold box a bit more work is needed since the proper adapter has to be used. The adapter is designed to fit also with the clamp that holds the module in contact with the TEC. The proper adapter has less plastic material, and can pass through the adapted support. Four magnets hold down the clamp over the module. The picture of the adapter and the support adapted to it is shown below. </p>
 <p><a href="../index.html">← Back to main page</a></p>
 
 
